@@ -21,16 +21,17 @@ def get_mask_account(account_number: int) -> str:
     return masked_account
 
 
-try:
-    card_number = int(input("Введите номер карты: "))
-    masked_number = get_mask_card_number(card_number)
-    print(masked_number)
-except ValueError:
-    print("Ошибка! Номер карты должен содержать только цифры!")
+if __name__ == "__main__":
+    try:
+        card_number = int(input("Введите номер карты: "))
+        masked_number = get_mask_card_number(card_number)
+        print(masked_number)
+    except ValueError:
+        print("Ошибка! Номер карты должен содержать только цифры!")
 
-try:
-    account_number = int(input("Введите номер счета: "))
-    masked_account = get_mask_account(account_number)
-    print(masked_account)
-except ValueError:
-    print("Ошибка! Номер счета должен содержать только цифры!")
+    try:
+        account_number = int(input("Введите номер счета: "))
+        masked_account = get_mask_account(account_number)
+        print(masked_account)
+    except ValueError:
+        print("Ошибка! Номер счета должен содержать только цифры!")
