@@ -1,4 +1,4 @@
-from masks import get_mask_account, get_mask_card_number
+from src.masks import get_mask_account, get_mask_card_number
 
 
 def mask_account_card(account_data: str) -> str:
@@ -12,17 +12,28 @@ def mask_account_card(account_data: str) -> str:
     card_name = " ".join(parts[:-1])
 
     if card_name.lower() == "счет":
+        if len(parts[-1]) < 16 or len(parts[-1]) > 20:
+            return "Номер счета должен быть от 16 до 20 цифр"
+        if not parts[-1].isdigit():
+            return "Номер счета должен содержать только цифры"
         account_number = int(parts[-1])
         masked_account = get_mask_account(account_number)
         return f"{card_name.lower()} {masked_account}"
     else:
+        if len(parts[-1]) != 16:
+            return "Номер карты должен состоять из 16 цифр"
+        if not parts[-1].isdigit():
+            return "Номер карты должен содержать только цифры"
         card_number = int(parts[-1])
         masked_number = get_mask_card_number(card_number)
         return f"{card_name.lower()} {masked_number}"
 
 
-print(mask_account_card('Visa Platinum 8990922113665229'))
-print(mask_account_card('Счет 8990922113665229'))
+# print(mask_account_card('Visa Platinum 8990922113665229'))
+# print(mask_account_card('Maestro 7000792289606361'))
+# print(mask_account_card('MasterCard 7158300734726758'))
+# print(mask_account_card('Мир 6831982476737658'))
+# print(mask_account_card('Счет 8990922113665212329'))
 
 
 def get_date(input_date: str) -> str:
@@ -36,5 +47,4 @@ def get_date(input_date: str) -> str:
     year = final_date[0]
     return f"{day}.{month}.{year}"
 
-
-print(get_date("2024-03-11T02:26:18.671407"))
+# print(get_date("2024-03-11T02:26:18.671407"))
