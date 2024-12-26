@@ -29,6 +29,13 @@ def mask_account_card(account_data: str) -> str:
         return f"{card_name.lower()} {masked_number}"
 
 
+# print(mask_account_card('Visa Platinum 8990922113665229'))
+# print(mask_account_card('Maestro 7000792289606361'))
+# print(mask_account_card('MasterCard 7158300734726758'))
+# print(mask_account_card('Мир 6831982476737658'))
+# print(mask_account_card('Счет 8990922113665212329'))
+
+
 def get_date(input_date: str) -> str:
     """Функция преобразует дату в нужный формат"""
 
@@ -41,6 +48,7 @@ def get_date(input_date: str) -> str:
     if len(input_date) != 26:
         return "Неверный формат даты"
 
+
     string_date = input_date.split('T')
     date_part = string_date[0]
     final_date = date_part.split('-')
@@ -48,3 +56,6 @@ def get_date(input_date: str) -> str:
     month = final_date[1]
     year = final_date[0]
     return f"{day}.{month}.{year}"
+
+# print(get_date(""))
+# print(get_date("9999-12-3123:59:59.9999999"))

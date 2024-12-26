@@ -4,7 +4,7 @@ def get_mask_card_number(card_number: int) -> str:
     card_str = str(card_number)
 
     if len(card_str) != 16:
-        return "Номер карты должен состоять из 16 цифр."
+        return "Номер карты должен состоять из 16 цифр"
 
     masked_number = card_str[:4] + " " + card_str[4:6] + "** " + "**** " + card_str[-4:]
 
@@ -16,22 +16,9 @@ def get_mask_account(account_number: int) -> str:
 
     account_str = str(account_number)
 
+    if len(account_str) < 16 or len(account_str) > 20:
+        return "Номер счета должен быть от 16 до 20 цифр"
+
     masked_account = "**" + account_str[-4:]
 
     return masked_account
-
-
-if __name__ == "__main__":
-    try:
-        card_number = int(input("Введите номер карты: "))
-        masked_number = get_mask_card_number(card_number)
-        print(masked_number)
-    except ValueError:
-        print("Ошибка! Номер карты должен содержать только цифры!")
-
-    try:
-        account_number = int(input("Введите номер счета: "))
-        masked_account = get_mask_account(account_number)
-        print(masked_account)
-    except ValueError:
-        print("Ошибка! Номер счета должен содержать только цифры!")
