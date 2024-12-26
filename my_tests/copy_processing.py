@@ -22,6 +22,7 @@ def sort_by_date(bank_data, reverse=True):
     """Функция сортировки списка словарей по дате в прямом или обратном порядке"""
 
     def get_date(item):
+        print(type(item))
         return item['date']
 
     return sorted(bank_data, key=get_date, reverse=reverse)
