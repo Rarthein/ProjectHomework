@@ -1,7 +1,7 @@
-from typing import Iterator, Union
+from typing import Iterator
 
 
-def filter_by_currency(transactions_list: list[dict], currency: str) -> Union[Iterator[dict], str]:
+def filter_by_currency(transactions_list: list[dict], currency: str) -> Iterator[dict]:
     """Функция фильтрует список транзакций по заданной валюте"""
 
     for transaction in transactions_list:
@@ -35,11 +35,11 @@ transactions = [{"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08
                  "from": "Счет 123456789", "to": "Счет 987654321"}]
 
 usd_transactions = filter_by_currency(transactions, "USD")
-for _ in range(2):
+for elem in range(2):
     print(next(usd_transactions))
 
 
-def transaction_descriptions(transactions: list[dict]) -> str:
+def transaction_descriptions(transactions: list[dict]) -> Iterator[str]:
     """Функция возвращает список описаний транзакций"""
 
     for transaction in transactions:
@@ -47,7 +47,7 @@ def transaction_descriptions(transactions: list[dict]) -> str:
             yield transaction["description"]
 
 
-def card_number_generator(start: int, end: int) -> str:
+def card_number_generator(start: int, end: int) -> Iterator[str]:
     """Функция генерирует номера карт, начиная со стартового номера и заканчивая конечным номером"""
 
     for number in range(start, end + 1):
